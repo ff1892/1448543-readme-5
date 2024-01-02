@@ -49,7 +49,7 @@ export class PostController {
   @Post(PostPath.Create)
   public async create(@Body() dto: CreatePostDto) {
     const newPost = await this.postService.create(dto);
-    return getPostRdo(newPost);
+    return newPost;
   }
 
   @ApiResponse({
@@ -63,7 +63,7 @@ export class PostController {
     @Body() dto: UpdatePostCommonDto
   ) {
     const post = await this.postService.update(id, dto);
-    return getPostRdo(post);
+    // return post;
   }
 
   @ApiResponse({
@@ -74,7 +74,7 @@ export class PostController {
   @Post(PostPath.Id)
   public async repost(@Body() userId: string, @Param('id') id: string) {
     const post = await this.postService.repost(id, userId);
-    return getPostRdo(post);
+    // return getPostRdo(post);
   }
 
   @ApiResponse({

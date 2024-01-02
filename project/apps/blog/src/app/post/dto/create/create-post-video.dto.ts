@@ -6,7 +6,7 @@ export class CreatePostVideoDto extends CreatePostCommonDto {
     description: 'Post headline',
     example: 'Look at this',
   })
-  public headline: string;
+  public title: string;
 
   @ApiProperty({
     description: 'Video link',

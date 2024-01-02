@@ -1,7 +1,7 @@
 import { PostText } from '@project/types';
 
 export class PostTextEntity implements PostText {
-  public headline: string;
+  public title: string;
   public preview: string;
   public text: string;
 
@@ -11,7 +11,7 @@ export class PostTextEntity implements PostText {
 
   public toPOJO() {
     return {
-      headline: this.headline,
+      title: this.title,
       preview: this.preview,
       text: this.text,
     };
@@ -20,6 +20,6 @@ export class PostTextEntity implements PostText {
   public populate(data: PostText) {
     this.text = data.text;
     this.preview = data.preview;
-    this.headline = data.headline;
+    this.title = data.title;
   }
 }

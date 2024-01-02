@@ -12,5 +12,5 @@ export class UpdatePostVideoDto extends UpdatePostCommonDto {
     description: 'Video link',
     example: 'https://video.com/1',
   })
-  public link: string;
+  public title: string;
 }

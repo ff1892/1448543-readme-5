@@ -1,8 +1,7 @@
 import { Expose } from 'class-transformer';
-import { PostRdo } from './post.rdo';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PostQuoteRdo extends PostRdo {
+export class PostQuoteRdo {
   @ApiProperty({
     description: 'Quote text',
     example: "If you're going to do something, do it with style!",
@@ -15,5 +14,5 @@ export class PostQuoteRdo extends PostRdo {
     example: 'Jason Statham',
   })
   @Expose()
-  public author: string;
+  public quoteAuthor: string;
 }

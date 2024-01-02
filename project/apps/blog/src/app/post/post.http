@@ -1,0 +1,12 @@
+# Create a new user
+POST http://localhost:3000/api/post/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "type": "video",
+  "tags": "['cooking', 'lifestyle']",
+  "title": "Nice video",
+  "link": "https://youtube.com"
+}
+
+###

@@ -2,7 +2,7 @@ import { PostLink } from '@project/types';
 
 export class PostLinkEntity implements PostLink {
   public link: string;
-  public description: string;
+  public description?: string;
 
   constructor(data: PostLink) {
     this.populate(data);

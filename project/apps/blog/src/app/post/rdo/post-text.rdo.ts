@@ -1,8 +1,7 @@
 import { Expose } from 'class-transformer';
-import { PostRdo } from './post.rdo';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PostTextRdo extends PostRdo {
+export class PostTextRdo {
   @ApiProperty({
     description: 'Post text',
     example: 'This is my first post on this platform',
@@ -15,7 +14,7 @@ export class PostTextRdo extends PostRdo {
     example: 'Hello world',
   })
   @Expose()
-  public headline: string;
+  public title: string;
 
   @ApiProperty({
     description: 'Post preview',

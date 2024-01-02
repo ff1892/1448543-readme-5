@@ -12,5 +12,5 @@ export class CreatePostQuoteDto extends CreatePostCommonDto {
     description: 'Quote author',
     example: 'Jason Statham',
   })
-  public author: string;
+  public quoteAuthor: string;
 }

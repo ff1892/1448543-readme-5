@@ -41,4 +41,22 @@ export class PostContentRepository {
       return this.postQuoteRepository;
     }
   }
+
+  async save(entity: PostContentEntity) {
+    if (entity instanceof PostTextEntity) {
+      return this.postTextRepository.save(entity);
+    }
+    if (entity instanceof PostVideoEntity) {
+      return this.postVideoRepository.save(entity);
+    }
+    if (entity instanceof PostPhotoEntity) {
+      return this.postPhotoRepository.save(entity);
+    }
+    if (entity instanceof PostLinkEntity) {
+      return this.postLinkRepository.save(entity);
+    }
+    if (entity instanceof PostQuoteEntity) {
+      return this.postQuoteRepository.save(entity);
+    }
+  }
 }

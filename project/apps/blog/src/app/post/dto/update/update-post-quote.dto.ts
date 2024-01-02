@@ -12,5 +12,5 @@ export class UpdatePostQuoteDto extends UpdatePostCommonDto {
     description: 'Quote author',
     example: 'Jason Statham',
   })
-  public author: string;
+  public quoteAuthor: string;
 }

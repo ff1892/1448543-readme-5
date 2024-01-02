@@ -12,7 +12,7 @@ export class UpdatePostTextDto extends UpdatePostCommonDto {
     description: 'Post headline',
     example: 'Hello world',
   })
-  public headline: string;
+  public title: string;
 
   @ApiProperty({
     description: 'Post preview',

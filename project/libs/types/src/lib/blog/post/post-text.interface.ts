@@ -1,6 +1,6 @@
 export interface PostText {
   id?: string;
-  headline: string;
+  title: string;
   preview: string;
   text: string;
 }

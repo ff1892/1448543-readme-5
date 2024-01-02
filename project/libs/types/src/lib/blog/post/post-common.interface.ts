@@ -11,6 +11,6 @@ export interface PostCommon {
   type: PostType;
   isReposted: boolean;
   tags?: string[];
-  createdAt: Date;
-  publishedAt: Date;
+  createdAt?: Date;
+  publishedAt?: Date;
 }

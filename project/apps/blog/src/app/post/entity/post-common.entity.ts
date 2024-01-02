@@ -5,8 +5,8 @@ export class PostCommonEntity implements PostCommon {
   public originId?: string;
   public userId?: string;
   public originUserId?: string;
-  public createdAt: Date;
-  public publishedAt: Date;
+  public createdAt?: Date;
+  public publishedAt?: Date;
   public status: PostStatus;
   public type: PostType;
   public isReposted: boolean;

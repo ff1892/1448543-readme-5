@@ -1,7 +1,7 @@
 import { PostVideo } from '@project/types';
 
 export class PostVideoEntity implements PostVideo {
-  public headline: string;
+  public title: string;
   public link: string;
 
   constructor(data: PostVideo) {
@@ -10,13 +10,13 @@ export class PostVideoEntity implements PostVideo {
 
   public toPOJO() {
     return {
-      headline: this.headline,
+      title: this.title,
       link: this.link,
     };
   }
 
   public populate(data: PostVideo) {
-    this.headline = data.headline;
+    this.title = data.title;
     this.link = data.link;
   }
 }

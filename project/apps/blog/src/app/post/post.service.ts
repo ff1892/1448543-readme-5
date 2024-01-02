@@ -6,21 +6,29 @@ import { PostStatus } from '@project/types';
 import { ContentEntityFactory } from './content-entity.factory';
 import { PostErrorMessage } from './post.constant';
 import { UpdatePostCommonDto } from './dto/update';
-import { PostCommonEntity } from './entity';
+import { PostCommonEntity, PostContentEntity } from './entity';
 import { fillDto } from '@project/helpers';
+import { PostContentRepository } from './repository/post-content.repository';
+import { PostRdo, PostContentRdo } from './rdo';
 
 @Injectable()
 export class PostService {
-  constructor(private readonly postRepository: PostRepository) {}
+  constructor(
+    private readonly postRepository: PostRepository,
+    private readonly postContentRepository: PostContentRepository
+  ) {}
 
   public async create(dto: CreatePostDto) {
     const now = new Date();
-    const { tags, type, status, ...content } = dto;
+    const { tags, type, ...content } = dto;
+
+    const userId = randomUUID();
 
     const newPostCommonData = {
       tags: tags,
       type: type,
-      userId: randomUUID(),
+      userId,
+      originUserId: userId,
       createdAt: now,
       publishedAt: now,
       status: PostStatus.Published,
@@ -28,16 +36,21 @@ export class PostService {
     };
 
     const newCommonEntity = new PostCommonEntity(newPostCommonData);
-    const savedCommonPost = this.postRepository.save(newCommonEntity);
+    const savedCommonPost = await this.postRepository.save(newCommonEntity);
+    const commonPostDto = fillDto(PostRdo, savedCommonPost.toPOJO());
+
     const newContentEntity = new ContentEntityFactory(
       type,
       content
     ).getContent();
-    // TODO
-    // 1. Создать отдельные репозитории для каждого типа контента
-    // 2. Сохранить сущность в нужном репозитории
-    // 3. Объединить ответ с savedCommonPost
-    // return this.postRepository.save(newPostCommonData);
+
+    const savedContentPost = await this.postContentRepository.save(
+      newContentEntity
+    );
+
+    const contentPostDto = fillDto(PostContentRdo, savedContentPost.toPOJO());
+
+    return { ...commonPostDto, ...contentPostDto };
   }
 
   public async update(id: string, dto: UpdatePostCommonDto) {
@@ -66,10 +79,10 @@ export class PostService {
       publishedAt: new Date(),
     };
 
-    const TypeEntity = ContentEntityAdapter[originalPost.type];
-    const newPostEntity = new TypeEntity(repostedPost);
+    // const TypeEntity = ContentEntityAdapter[originalPost.type];
+    // const newPostEntity = new TypeEntity(repostedPost);
 
-    return newPostEntity;
+    // return newPostEntity;
   }
 
   public async delete(id: string, userId: string) {

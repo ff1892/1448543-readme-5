@@ -1,8 +1,7 @@
 import { Expose } from 'class-transformer';
-import { PostRdo } from './post.rdo';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PostLinkRdo extends PostRdo {
+export class PostLinkRdo {
   @ApiProperty({
     description: 'Link URL',
     example: 'https://github.com',

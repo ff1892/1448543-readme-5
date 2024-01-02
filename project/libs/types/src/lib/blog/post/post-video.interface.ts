@@ -1,4 +1,4 @@
 export interface PostVideo {
-  headline: string;
+  title: string;
   link: string;
 }
